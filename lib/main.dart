@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skool/DetailPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,21 +18,31 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(
+       
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  MyHomePage({super.key,  this.title});
 
-  final String title;
+  final String? title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  /// Hooks ///
+  List imagePaths = [
+    'assets/images/math.jpg',
+    'assets/images/chem.jpg',
+    'assets/images/bio.jpg',
+    'assets/images/lang.png'
+  ];
+  List data = ['Mathematics', 'Chemistry', 'Biology', 'Language'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 100.0),
+                    padding: const EdgeInsets.only(left: 50.0),
                     child: Container(
                       width: 50,
                       height: 50,
@@ -95,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Card(
                     color: Color.fromARGB(255, 255, 244, 214),
                     child: Container(
-                      padding: EdgeInsets.only(left: 10, top: 25, bottom: 25),
+                      padding: EdgeInsets.only(left: 10, top: 20, bottom: 20),
                       width: double.infinity,
                       child: Row(
                         children: [
@@ -140,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 80.0),
+                            padding: const EdgeInsets.only(left: 50.0),
                             child: Image.asset(
                               'assets/images/sbag.png', // Path to your asset image
                               width: 110,
@@ -167,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.w600),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 208.0),
+                    padding: const EdgeInsets.only(left: 160.0),
                     child: Text(
                       "See all",
                       style: TextStyle(color: Colors.white, fontSize: 15.0),
@@ -181,89 +192,108 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 child: Row(
                   children: [
-                    Column(
-                      children: [
-                        Card(
-                          color: Color.fromARGB(255, 72, 85, 97),
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                left: 28, top: 20, bottom: 20, right: 28),
-                            // width: double.infinity,
-                            child: Column(
-                              children: <Widget>[
-                                Image.asset(
-                                  'assets/images/math.jpg', // Path to your asset image
-                                  width: 65,
-                                  height: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Mathematics",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "\$10/month",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "* 4.9(694 review)",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(subName:  data[0],subImage: imagePaths[0]),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Card(
+                            color: Color.fromARGB(255, 72, 85, 97),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 14, top: 20, bottom: 20, right: 14),
+                              // width: double.infinity,
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset(
+                                    imagePaths[0], // Path to your asset image
+                                    width: 65,
+                                    height: 65,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    data[0],
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "\$10/month",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "* 4.9(694 review)",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.0),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Column(
-                      children: [
-                        Card(
-                          color: Color.fromARGB(255, 72, 85, 97),
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                left: 35, top: 20, bottom: 20, right: 35),
-                            // width: double.infinity,
-                            child: Column(
-                              children: <Widget>[
-                                Image.asset(
-                                  'assets/images/chem.jpg', // Path to your asset image
-                                  width: 65,
-                                  height: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Chemistry",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "\$14/month",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
-                                SizedBox(height: 4),
-                                
-                                Text(
-                                  "* 4.8(464 review)",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(subName: data[1],subImage: imagePaths[1]),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Card(
+                            color: Color.fromARGB(255, 72, 85, 97),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 23, top: 20, bottom: 20, right: 24),
+                              // width: double.infinity,
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset(
+                                    imagePaths[1], // Path to your asset image
+                                    width: 65,
+                                    height: 65,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    data[1],
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "\$14/month",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "* 4.8(464 review)",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.0),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -274,88 +304,108 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 child: Row(
                   children: [
-                    Column(
-                      children: [
-                        Card(
-                          color: Color.fromARGB(255, 72, 85, 97),
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                left: 36, top: 20, bottom: 20, right: 36),
-                            // width: double.infinity,
-                            child: Column(
-                              children: <Widget>[
-                                Image.asset(
-                                  'assets/images/bio.jpg', // Path to your asset image
-                                  width: 65,
-                                  height: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Biology",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "\$16/month",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "* 4.9(694 review)",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(subName: data[2],subImage: imagePaths[2]),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Card(
+                            color: Color.fromARGB(255, 72, 85, 97),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 20, top: 20, bottom: 20, right: 22),
+                              // width: double.infinity,
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset(
+                                    imagePaths[2], // Path to your asset image
+                                    width: 65,
+                                    height: 65,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    data[2],
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "\$16/month",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "* 4.9(694 review)",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.0),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Column(
-                      children: [
-                        Card(
-                          color: Color.fromARGB(255, 72, 85, 97),
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                left: 34, top: 20, bottom: 20, right: 34),
-                            // width: double.infinity,
-                            child: Column(
-                              children: <Widget>[
-                                Image.asset(
-                                  'assets/images/lang.png', // Path to your asset image
-                                  width: 65,
-                                  height: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Language",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "\$16/month",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "* 4.8(464 review)",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(subName: data[3],subImage: imagePaths[3],),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Card(
+                            color: Color.fromARGB(255, 72, 85, 97),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 23, top: 20, bottom: 20, right: 24),
+                              // width: double.infinity,
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset(
+                                    imagePaths[3], // Path to your asset image
+                                    width: 65,
+                                    height: 65,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    data[3],
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "\$16/month",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.0),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "* 4.8(464 review)",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.0),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
