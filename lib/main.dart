@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skool/DetailPage.dart';
+import 'package:http/http.dart';
+import 'package:skool/JsonApi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(
+      home: JsonApi(
        
       ),
     );
