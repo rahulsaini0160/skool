@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key,required this.subName,required  this.subImage});
+  const DetailPage({super.key, required this.subName, required this.subImage});
 
-final String subName;
-final String subImage;
+  final String subName;
+  final String subImage;
   @override
   State<DetailPage> createState() => _DetailPageState();
 }
@@ -12,6 +12,7 @@ final String subImage;
 class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
+    var _mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(color: Color.fromARGB(255, 35, 51, 66)),
@@ -20,6 +21,7 @@ class _DetailPageState extends State<DetailPage> {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   IconButton(
                     icon: Icon(
@@ -62,6 +64,7 @@ class _DetailPageState extends State<DetailPage> {
                         padding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
                         width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left:12.0),
+                                  padding: const EdgeInsets.only(left: 12.0),
                                   child: Center(
                                     child: Text(
                                       'Fee \$20',
@@ -111,24 +114,21 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 25,
-              ),
               Column(
                 children: [
                   Image.asset(
-                   widget.subImage, // Replace with your image path
-                    width: 240, // Adjust width as needed
-                    height: 240, // Adjust height as needed
+                    widget.subImage, // Replace with your image path
+                    width:
+                        _mediaQuery.size.width * 0.7, // Adjust width as needed
+                    height: _mediaQuery.size.height *
+                        0.4, // Adjust height as needed
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 20.0,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
                       "Outline",
@@ -160,6 +160,7 @@ class _DetailPageState extends State<DetailPage> {
                         padding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
                         width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Image.asset(
                               'assets/images/mathe.png', // Replace with your image path
@@ -224,9 +225,10 @@ class _DetailPageState extends State<DetailPage> {
                     child: Card(
                       color: Color.fromARGB(255, 72, 85, 97),
                       child: Container(
-                        padding: EdgeInsets.only(left: 20, top: 12, bottom:12),
+                        padding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
                         width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Image.asset(
                               'assets/images/sine.png', // Replace with your image path
@@ -294,6 +296,7 @@ class _DetailPageState extends State<DetailPage> {
                         padding: EdgeInsets.only(left: 10, top: 6, bottom: 6),
                         width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0),
@@ -337,17 +340,17 @@ class _DetailPageState extends State<DetailPage> {
                             Icon(
                               Icons.navigate_next,
                               color: Colors.black,
-                              size: 12,
+                              size: 18,
                             ),
                             Icon(
                               Icons.navigate_next,
                               color: Color.fromARGB(255, 35, 51, 66),
-                              size: 19,
+                              size: 18,
                             ),
                             Icon(
                               Icons.navigate_next,
                               color: Color.fromARGB(255, 35, 51, 66),
-                              size: 23,
+                              size: 18,
                             ),
                           ],
                         ),

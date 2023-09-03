@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:skool/DetailPage.dart';
 import 'package:http/http.dart';
 import 'package:skool/JsonApi.dart';
+import 'package:skool/media.dart';
+import 'package:skool/post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,15 +22,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: JsonApi(
-       
-      ),
+      home: const postData(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key,  this.title});
+  MyHomePage({super.key, this.title});
 
   final String? title;
 
@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List data = ['Mathematics', 'Chemistry', 'Biology', 'Language'];
   @override
   Widget build(BuildContext context) {
+    var _mediaQuery = MediaQuery.of(context);
     return Scaffold(
       // appBar: AppBar(
       //   centerTitle: true,
@@ -60,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
                     child: Container(
-                      width: 50,
+                      width: _mediaQuery.size.width * 0.12,
                       height: 50,
                       decoration: BoxDecoration(
                         color: Colors.blue,
@@ -111,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: EdgeInsets.only(left: 10, top: 20, bottom: 20),
                       width: double.infinity,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
@@ -171,6 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 20.0,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     "Subject",
@@ -193,13 +197,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailPage(subName:  data[0],subImage: imagePaths[0]),
+                            builder: (context) => DetailPage(
+                                subName: data[0], subImage: imagePaths[0]),
                           ),
                         );
                       },
@@ -248,11 +254,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 5,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailPage(subName: data[1],subImage: imagePaths[1]),
+                            builder: (context) => DetailPage(
+                                subName: data[1], subImage: imagePaths[1]),
                           ),
                         );
                       },
@@ -305,13 +312,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailPage(subName: data[2],subImage: imagePaths[2]),
+                            builder: (context) => DetailPage(
+                                subName: data[2], subImage: imagePaths[2]),
                           ),
                         );
                       },
@@ -360,11 +369,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 5,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailPage(subName: data[3],subImage: imagePaths[3],),
+                            builder: (context) => DetailPage(
+                              subName: data[3],
+                              subImage: imagePaths[3],
+                            ),
                           ),
                         );
                       },

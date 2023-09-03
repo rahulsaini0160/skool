@@ -1,38 +1,39 @@
 // To parse this JSON data, do
 //
-//     final samplePosts = samplePostsFromJson(jsonString);
+//     final sample = sampleFromJson(jsonString);
 
 import 'dart:convert';
 
-List<SamplePosts> samplePostsFromJson(String str) => List<SamplePosts>.from(json.decode(str).map((x) => SamplePosts.fromJson(x)));
+List<Sample> sampleFromJson(String str) =>
+    List<Sample>.from(json.decode(str).map((x) => Sample.fromJson(x)));
 
-String samplePostsToJson(List<SamplePosts> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String sampleToJson(List<Sample> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class SamplePosts {
-    int userId;
-    int id;
-    String title;
-    String body;
+class Sample {
+  int userId;
+  int id;
+  String title;
+  String body;
 
-    SamplePosts({
-        required this.userId,
-        required this.id,
-        required this.title,
-        required this.body,
-    });
+  Sample({
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.body,
+  });
 
-    factory SamplePosts.fromJson(Map<String, dynamic> json) => SamplePosts(
+  factory Sample.fromJson(Map<String, dynamic> json) => Sample(
         userId: json["userId"],
         id: json["id"],
         title: json["title"],
         body: json["body"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "userId": userId,
         "id": id,
         "title": title,
         "body": body,
-  
-    };
+      };
 }
